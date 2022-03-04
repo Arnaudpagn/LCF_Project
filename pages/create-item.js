@@ -58,8 +58,14 @@ export default function CreateItem() {
     const provider = new ethers.providers.Web3Provider(connection);
     const signer = provider.getSigner();
 
+    let maxFeePerGasOverride = ethers.utils.parseUnits("50", "gwei");
+    let maxPriorityFeePerGasOverride = ethers.utils.parseUnits("50", "gwei");
+
     let contract = new ethers.Contract(nftaddress, NFT.abi, signer);
-    let transaction = await contract.createToken(url);
+    let transaction = await contract.createToken(url, {
+      maxFeePerGas: maxFeePerGasOverride,
+      maxPriorityFeePerGas: maxPriorityFeePerGasOverride,
+    });
     let tx = await transaction.wait();
 
     let event = tx.events[0];
@@ -73,9 +79,18 @@ export default function CreateItem() {
     let listingPrice = await contract.getListingPrice();
     listingPrice = listingPrice.toString();
 
-    transaction = await contract.createMarketItem(nftaddress, tokenId, price, {
-      value: listingPrice,
-    });
+    transaction = await contract.createMarketItem(
+      nftaddress,
+      tokenId,
+      price,
+      {
+        value: listingPrice,
+      },
+      {
+        maxFeePerGas: maxFeePerGasOverride,
+        maxPriorityFeePerGas: maxPriorityFeePerGasOverride,
+      }
+    );
     await transaction.wait();
 
     router.push("/");

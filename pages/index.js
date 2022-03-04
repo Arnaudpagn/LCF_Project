@@ -2,6 +2,7 @@ import { ethers } from "ethers";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Web3Modal from "web3modal";
+import Image from "next/image";
 
 import { nftaddress, nftmarketaddress } from "../config";
 
@@ -59,11 +60,17 @@ export default function Home() {
 
     const price = ethers.utils.parseUnits(nft.price.toString(), "ether");
 
-    console.log(nftaddress, nft.tokenId, nft, nft.price.toString());
+    let maxFeePerGasOverride = ethers.utils.parseUnits("50", "gwei");
+    let maxPriorityFeePerGasOverride = ethers.utils.parseUnits("50", "gwei");
+
     const transaction = await contract.createMarketSale(
       nftaddress,
       nft.tokenId,
-      { value: price }
+      { value: price },
+      {
+        maxFeePerGas: maxFeePerGasOverride,
+        maxPriorityFeePerGas: maxPriorityFeePerGasOverride,
+      }
     );
     await transaction.wait();
 
@@ -80,8 +87,17 @@ export default function Home() {
       <div className="px-4" style={{ maxWidth: "1600px" }}>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4">
           {nfts.map((nft, i) => (
-            <div key={i} className="border shadow rounded-xl overflow-hidden">
-              <img src={nft.image} />
+            <div
+              key={i}
+              className="border shadow rounded-xl overflow-hidden flex flex-col"
+            >
+              <Image
+                layout="intrinsic"
+                src={nft.image}
+                width="300"
+                height="300"
+                className="object-cover"
+              />
               <div className="p-4">
                 <p
                   style={{ height: "64px" }}

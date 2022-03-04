@@ -76,6 +76,15 @@ export default function Tutorial() {
             as NFTs
           </li>
         </ol>
+        <br />
+        <br />
+        <p className="text-justify text-sm">
+          <i>
+            For reasons not under our control, the current MaxFee and
+            MaxPriorityFee are quite high on the Mumbai testnet so we have
+            overriden those values to be 50 GWEI each in our transactions
+          </i>
+        </p>
       </div>
     </div>
   );
