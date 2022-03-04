@@ -5,7 +5,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <div>
       <nav className="border-b p-6">
-        <p className="text-4xl font-bold">Oscar & Nour Marketplace</p>
+        <p className="text-4xl font-bold">Cat Pictures Marketplace</p>
         <div className="flex mt-4">
           <Link href="/">
             <a className="mr-4 text-pink-500">Home</a>
@@ -18,6 +18,9 @@ function MyApp({ Component, pageProps }) {
           </Link>
           <Link href="/creator-dashboard">
             <a className="mr-6 text-pink-500">Creator Dashboard</a>
+          </Link>
+          <Link href="/tutorial">
+            <a className="mr-6 text-pink-500">Tutorial</a>
           </Link>
         </div>
       </nav>
