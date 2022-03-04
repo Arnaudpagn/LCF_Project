@@ -79,18 +79,11 @@ export default function CreateItem() {
     let listingPrice = await contract.getListingPrice();
     listingPrice = listingPrice.toString();
 
-    transaction = await contract.createMarketItem(
-      nftaddress,
-      tokenId,
-      price,
-      {
-        value: listingPrice,
-      },
-      {
-        maxFeePerGas: maxFeePerGasOverride,
-        maxPriorityFeePerGas: maxPriorityFeePerGasOverride,
-      }
-    );
+    transaction = await contract.createMarketItem(nftaddress, tokenId, price, {
+      value: listingPrice,
+      maxFeePerGas: maxFeePerGasOverride,
+      maxPriorityFeePerGas: maxPriorityFeePerGasOverride,
+    });
     await transaction.wait();
 
     router.push("/");

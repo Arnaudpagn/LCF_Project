@@ -66,8 +66,8 @@ export default function Home() {
     const transaction = await contract.createMarketSale(
       nftaddress,
       nft.tokenId,
-      { value: price },
       {
+        value: price,
         maxFeePerGas: maxFeePerGasOverride,
         maxPriorityFeePerGas: maxPriorityFeePerGasOverride,
       }
