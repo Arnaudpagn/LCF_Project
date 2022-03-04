@@ -85,6 +85,23 @@ export default function Tutorial() {
             overriden those values to be 50 GWEI each in our transactions
           </i>
         </p>
+        <br />
+        <br />
+        <p className="text-justify">
+          Credits :{" "}
+          <b>
+            Nader Dabit (
+            <a
+              href="https://www.youtube.com/c/naderdabit"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600"
+            >
+              youtube channel
+            </a>
+            )
+          </b>
+        </p>
       </div>
     </div>
   );
